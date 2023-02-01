@@ -7,11 +7,6 @@ var path = require("path");
 
 mwjswin.showDevTools();
 
-var child_process = require("child_process");
-var execSync = child_process.execSync;
-var output = execSync("bash ./update.sh");
-console.log(output.toString());
-
 var settingsPath = "./settings.json";
 var settingsHelper = {
   saveSettings: function (settings, callback) {

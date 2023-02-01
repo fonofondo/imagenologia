@@ -35,6 +35,14 @@
           console.log("app loaded");
         });
       }
+
+      function update() {
+        var child_process = require("child_process");
+        var execSync = child_process.execSync;
+        var output = execSync("bash ./update.sh");
+        loadApp();
+        console.log(output.toString());
+      }
     </script>
   </body>
 </html>
