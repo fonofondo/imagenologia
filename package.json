@@ -1,0 +1,8 @@
+{
+  "name": "helloworld",
+  "main": "index.html",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "nw-programmatic-folder-select": "^1.0.5"
+  }
+}
