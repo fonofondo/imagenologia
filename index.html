@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Imagenología CVZ</title>
+    <script src="jquery-3.6.3.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      #app-loader {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-loader"><button onclick="loadApp()">Load app</button></div>
+
+    <div id="app"></div>
+    <script>
+      $(document).ready(() => loadApp());
+
+      function loadApp() {
+        $("#app").load("app.html", () => {
+          $("#app-loader").remove();
+          console.log("app loaded");
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<script src="js.js"></script>
+
+<h1>Imagenología CVZ</h1>
+<h2 style="display: flex">
+  Interfaz de Transmisión de Archivos
+  <div style="flex-grow: 1; text-align: right">
+    <button onclick="loadApp()">Acutalizar</button>
+  </div>
+</h2>
+<div id="controls">
+  <button onclick="chooseResultsFolder()">
+    Escoger Directorio de Resultados
+  </button>
+  <div id="target-path">Ninguno seleccionado.</div>
+  <button onclick="start()">start</button>
+  <div id="terminal"></div>
+</div>
+
+<style>
+  h1 {
+    background-color: #607d8b;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    margin: 0;
+  }
+
+  h2 {
+    background-color: #233c3c;
+    color: white;
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  #terminal {
+    border: 1px solid #ccc;
+    margin: 1em auto;
+    padding: 5px;
+    background: #eee;
+    color: #888;
+    min-height: 4em;
+  }
+
+  #target-path {
+    border: 1px solid #ccc;
+    margin: 1em auto;
+    padding: 5px;
+    background: #eee;
+    color: #888;
+    min-height: 1em;
+  }
+
+  #controls {
+    padding: 10px;
+  }
+</style>
