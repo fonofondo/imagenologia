@@ -1,19 +1,39 @@
-<script src="js.js"></script>
+<script src="./js.js"></script>
 
 <h1>Imagenología CVZ</h1>
 <h2 style="display: flex">
   Interfaz de Transmisión de Archivos
   <div style="flex-grow: 1; text-align: right">
-    <button onclick="update()">Acutalizar</button>
+    <!-- button onclick="loadApp()">Acutalizar</button -->
+    v1.0.0
   </div>
 </h2>
 <div id="controls">
-  <button onclick="chooseResultsFolder()">
-    Escoger Directorio de Resultados
-  </button>
-  <div id="target-path">Ninguno seleccionado.</div>
-  <button onclick="start()">start</button>
+  <div style="display: flex;">
+    <button onclick="chooseResultsFolder()">
+      Directorio de Resultados
+    </button>
+    <div id="results-path">Ninguno seleccionado.</div>
+  </div>
+  <div style="display: flex; margin-top:1em">
+    <button onclick="chooseTargetFolder()">
+      Directorio de Destino
+    </button>
+    <div id="target-path">Ninguno seleccionado.</div>
+  </div>
+
+  <div style="display: flex; margin-top:1em">
+    <button id="start-button" onclick="start()">
+      Iniciar
+    </button>
+    <button id="stop-button" style="display: none;" onclick="stop()">
+      Detener
+    </button>
+  </div>
+
   <div id="terminal"></div>
+
+  <div id="sinaptics">Desarrollado por SinapTICs S.A.S.</div>
 </div>
 
 <style>
@@ -35,23 +55,59 @@
 
   #terminal {
     border: 1px solid #ccc;
-    margin: 1em auto;
+    margin: 0.9em auto 0.4em;
     padding: 5px;
     background: #eee;
     color: #888;
-    min-height: 4em;
+    height: 340px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-gap: 5px;
+    align-content: start;
+    opacity: 0.9;
   }
 
+  #results-path,
   #target-path {
+    flex-grow: 1;
     border: 1px solid #ccc;
-    margin: 1em auto;
     padding: 5px;
     background: #eee;
-    color: #888;
+    color: #3b3b3b;
     min-height: 1em;
   }
 
   #controls {
     padding: 10px;
+  }
+
+  #controls button {
+    width: 200px;
+  }
+
+  .logdate,
+  .log {
+    border-bottom: 1px solid #ccc;
+    padding: 3px;
+  }
+
+  .log {
+    color: #666;
+  }
+
+  .log.error {
+    color: red;
+  }
+
+  #stop-button {
+    background: #ce3939;
+    color: white;
+  }
+
+  #sinaptics {
+    font-size: small;
+    color: #aaa;
+    text-align: right;
   }
 </style>

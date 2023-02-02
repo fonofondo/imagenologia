@@ -1,48 +1,59 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Imagenología CVZ</title>
-    <script src="jquery-3.6.3.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-      }
-      #app-loader {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="app-loader"><button onclick="loadApp()">Load app</button></div>
 
-    <div id="app"></div>
-    <script>
-      $(document).ready(() => loadApp());
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Imagenología CVZ</title>
+  <script src="jquery-3.6.3.min.js"></script>
+  <style>
+    html {
+      background-image: url('./cvzbg.png');
+      background-size: cover;
+      background-position: center;
+    }
 
-      function loadApp() {
-        $("#app").load("app.html", () => {
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ffffffcc;
+    }
+
+    #app-loader {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app-loader"><button onclick="loadApp()">Load app</button></div>
+
+  <div id="app"></div>
+  <script>
+    $(document).ready(() => loadApp());
+
+    function loadApp() {
+      $("#app").load(
+        "./app.html",
+        () => {
           $("#app-loader").remove();
           console.log("app loaded");
-        });
-      }
+        }
+      );
+    }
 
-      function update() {
-        var child_process = require("child_process");
-        var execSync = child_process.execSync;
-        var output = execSync("bash ./update.sh");
-        loadApp();
-        console.log(output.toString());
-      }
-    </script>
-  </body>
+    function update() {
+      var child_process = require("child_process");
+      var execSync = child_process.execSync;
+      var output = execSync("bash ./update.sh");
+      loadApp();
+      console.log(output.toString());
+    }
+  </script>
+</body>
+
 </html>

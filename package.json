@@ -1,8 +1,9 @@
 {
-  "name": "helloworld",
+  "name": "imagenologia-file-transfer",
   "main": "index.html",
   "dependencies": {
     "chokidar": "^3.5.3",
-    "nw-programmatic-folder-select": "^1.0.5"
+    "nw-programmatic-folder-select": "^1.0.5",
+    "zip-local": "^0.3.5"
   }
 }
