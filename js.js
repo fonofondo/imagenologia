@@ -34,13 +34,11 @@ var settingsHelper = {
       } else if (typeof callback === "function") {
         try {
           data = data.length ? JSON.parse(data) : {};
-          addLog('Archivo de configuración cargado: ' + settingsPath)
+          addLog('<b>Archivo de configuración cargado:</b> ' + settingsPath)
           callback(data);
         } catch (error) {
-          console.info(
-            "There was a problem parsing the data in your settings."
-          );
-          console.warn(error);
+          addLog('<b>Error de lectura de configuración.</b> ', 'error')
+          console.error(error);
           callback({});
         }
       }
@@ -122,12 +120,12 @@ function start() {
   $('#stop-button').show()
 
   if (!settings.resultsFolder) {
-    addLog("Falta indicar directorio de resultados.", 'error')
+    addLog("<b>Falta indicar directorio de resultados.</b>", 'error')
     return;
   }
 
   if (!settings.targetFolder) {
-    addLog("Falta indicar directorio de destino.", 'error')
+    addLog("<b>Falta indicar directorio de destino.</b>", 'error')
     return;
   }
 
@@ -175,14 +173,14 @@ var folderTimers = {}
 
 function startFolderAddedTimer(folder) {
   if (folderTimers[folder]) clearTimeout(folderTimers[folder])
-
+  const waitInterval = parseInt($('#waitInterval').val()) * 1000
   folderTimers[folder] = setTimeout(() => {
     processFolder(folder)
-  }, 5000)
+  }, waitInterval)
 }
 
 function processFolder(folder) {
-  addLog('Procesando directorio: ' + folder)
+  addLog('<b>Procesando directorio: </b>' + folder)
 
   // zipping a file
   zipper.zip(path.join(settings.resultsFolder, folder), function (error, zipped) {
@@ -201,29 +199,30 @@ function processFolder(folder) {
       const tempZip = path.join(compressedPath, folder + '.zip')
       zipped.save(tempZip, function (error) {
         if (!error) {
-          addLog("Eviando archivo comprimido: " + tempZip);
 
           const destination = path.join(settings.targetFolder, folder + '.zip')
 
           fs.copyFile(tempZip, destination, (err) => {
             if (err) {
-              addLog(err, 'error')
+              addLog('<b>Error copiando archivo comprimido: </b>' + err, 'error')
               return
             }
+
+            addLog("<b>Archivo comprimido copiado a:</b> " + destination);
 
 
             fs.unlink(tempZip, () => {
               if (err) {
-                addLog("Error borrando archivo temporal: " + err, 'error');
+                addLog("<b>Error borrando archivo temporal:</b> " + err, 'error');
                 return;
               }
 
-              addLog("Archivo temporal borrado: " + tempZip);
+              addLog("<b>Archivo temporal borrado:</b> " + tempZip);
             })
           });
 
         } else {
-          addLog("Error al comprimir: " + error, 'error');
+          addLog("<b>Error al comprimir:</b> " + error, 'error');
         }
       });
     }
